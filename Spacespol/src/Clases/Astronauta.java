@@ -7,45 +7,90 @@ public class Astronauta {
     private int salud = 100;         
     private int vitalidad = 100;     
     private int privacidad = 100;    
-    private int fatiga = 0; 
-
+    private int moral = 100; 
+    private Modulo moduloActual;
+    
     public Astronauta(String nombre) {
         this.nombre = nombre;
     }
 
     public double getProductividad() {
         double factorSalud = this.salud / 100.0;
-        double factorFatiga = 1.0 - (this.fatiga / 100.0);
-        return Math.min(factorSalud, factorFatiga); 
+        double factorVitalidad = this.vitalidad / 100.0;
+        double factorPrivacidad = this.privacidad / 100.0;
+        double factorMoral = this.moral / 100.0;
+        return (factorSalud + factorVitalidad + factorPrivacidad + factorMoral) / 4.0;
     }
     
+   //Metodos que puede realizar en la mision 
+    public void descansar() {
+        aumentarVitalidad(30);
+        curarSalud(10);
+        aumentarMoral(5);
+        System.out.println(nombre + " ha descansado y recupera salud y energía.");
+    }
+    
+    public void comer() {
+        aumentarVitalidad(20);
+        System.out.println(nombre + " ha comido y recupera energía.");
+    }
+
+
+    public void hacerExperimento(Modulo modulo) {
+        avanzarMisionPrincipal(5);
+        reducirVitalidad(10); 
+        aumentarMoral(2);
+        System.out.println(nombre + " ha realizado un experimento.");
+    }
+
+    public void recolectarMuestras(Planeta planeta, Objeto muestra) {
+        planeta.recolectarMuestra(this, muestra);
+        reducirVitalidad(15); // gasto de energía al recolectar
+        aumentarMoral(3);
+        System.out.println(nombre + " recolectó muestra: " + muestra.getNombre());
+    }
     
     public void aumentarVitalidad(int cantidad) {
         this.vitalidad = Math.min(100, this.vitalidad + cantidad);
     }
-    
+
+    public void reducirVitalidad(int cantidad) {
+        this.vitalidad = Math.max(0, this.vitalidad - cantidad);
+    }
+
     public void curarSalud(int cantidad) {
         this.salud = Math.min(100, this.salud + cantidad);
     }
-    
-    public void reducirFatiga(int cantidad) {
-        this.fatiga = Math.max(0, this.fatiga - cantidad);
-    }
-    
+
     public void modificarPrivacidad(int cantidad) {
         this.privacidad = Math.min(100, Math.max(0, this.privacidad + cantidad));
     }
 
-    
-    //Cuando haya un modulo especifico que solicite cambiar estos atributos
-    public void setSalud(int salud) { 
-        this.salud = salud; 
-    }
-    public void setFatiga(int fatiga) { 
-        this.fatiga = fatiga; 
+    public void aumentarMoral(int cantidad) {
+        this.moral = Math.min(100, this.moral + cantidad);
     }
 
+    public void reducirMoral(int cantidad) {
+        this.moral = Math.max(0, this.moral - cantidad);
+    }
+      
+    public void pasarDia() {
+        // Disminuye ligeramente la vitalidad y moral por desgaste diario
+        reducirVitalidad(5);
+        reducirMoral(1);
+        modificarPrivacidad(-1); // si no hay espacio personal, baja privacidad
+    }
     
+    private void avanzarMisionPrincipal(double cantidad) {
+        if (moduloActual instanceof HALO) {
+            HALO halo = (HALO) moduloActual;
+            if (halo.mision != null) {
+                halo.mision.avanzarProgreso(cantidad);
+            }
+        }
+    }
+    
+    //getters and setters
 
     public String getNombre() {
         return nombre;
@@ -57,6 +102,10 @@ public class Astronauta {
 
     public int getSalud() {
         return salud;
+    }
+
+    public void setSalud(int salud) {
+        this.salud = salud;
     }
 
     public int getVitalidad() {
@@ -75,22 +124,21 @@ public class Astronauta {
         this.privacidad = privacidad;
     }
 
-    public int getFatiga() {
-        return fatiga;
+    public int getMoral() {
+        return moral;
+    }
+
+    public void setMoral(int moral) {
+        this.moral = moral;
+    }
+
+    public Modulo getModuloActual() {
+        return moduloActual;
+    }
+
+    public void setModuloActual(Modulo moduloActual) {
+        this.moduloActual = moduloActual;
     }
     
     
-    
-    
-    void comer(){
-    }
-    void descansar(){
-        
-    }
-//    void hacerExperimento(Cientifico modulo){
-//        
-//    }
-    void recolectarMuestras(Planeta planeta){
-        
-    }
 }
