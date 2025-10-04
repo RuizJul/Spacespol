@@ -6,12 +6,19 @@ package Clases;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  *
  * @author Julian
  */
 public class Laboratorio extends Modulo {
+
+    private boolean equipoOperativo = true;
+    private double energiaRequeridaPorExperimento = 10;
+    //MISION
+    private int muestrasRecolectadas = 0; // materiales disponibles para analizar
+    private Random random = new Random();
 
     public Laboratorio(String nombre, double capacidad, double pesoMaximo) {
         this.nombre = nombre;
@@ -62,5 +69,50 @@ public class Laboratorio extends Modulo {
         }
         System.out.println("Espacio usado: " + usado + " / " + capacidad);
         System.out.println("Peso actual: " + pesoActual + " / " + pesoMaximo);
+    }
+
+    // Realizar un experimento (requiere energía, materiales y buen estado)
+    public void realizarExperimento(Gateway gateway, Logistica logistica) {
+        if (!equipoOperativo) {
+            System.out.println("⚠ El laboratorio está averiado. No se pueden realizar experimentos.");
+            return;
+        }
+
+        if (muestrasRecolectadas <= 0) {
+            System.out.println("⚠ No hay muestras para analizar. Los astronautas deben recolectar más.");
+            return;
+        }
+
+        if (gateway.energiaDisponible < energiaRequeridaPorExperimento) {
+            System.out.println("⚠ Energía insuficiente para realizar el experimento.");
+            return;
+        }
+
+        if (!logistica.consumirRecurso("reactivo")) {
+            System.out.println("⚠ No hay suficientes reactivos en el módulo de logística.");
+            return;
+        }
+
+        // Si pasa todas las condiciones:
+        gateway.consumirEnergia(energiaRequeridaPorExperimento);
+        muestrasRecolectadas--;
+        
+        boolean exito = random.nextDouble() < 0.7; // 70% de probabilidad de éxito
+
+        //CORRECION PARA MISION
+        if (exito) {
+            double avance = 10 + random.nextDouble() * 10; // avanza entre 10% y 20%
+            //progresoInvestigacion = Math.min(100, progresoInvestigacion + avance);
+            System.out.println("✅ Experimento exitoso. Progreso de investigación: " + progresoInvestigacion + "%");
+        } else {
+            estado -= 5;
+            System.out.println("❌ El experimento falló. El equipo se deteriora. Estado actual: " + estado + "%");
+
+            if (estado <= 50) {
+                equipoOperativo = false;
+                estadoCritico = true;
+                System.out.println("⚠ El laboratorio ha entrado en estado crítico. Requiere reparación con el Canadarm3.");
+            }
+        }
     }
 }
