@@ -10,7 +10,12 @@ package Clases;
  */
 public class Canadarm3 {
     boolean disponible;
-    int diasRestantes=0;
+    int diasRestantes;
+    
+    public Canadarm3(){
+        this.disponible=true;
+        this.diasRestantes=0;
+    }
 
     public void reparar(Modulo modulo){
         if(disponible){

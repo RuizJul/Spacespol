@@ -17,19 +17,10 @@ abstract class Modulo {
     double pesoMaximo;  // peso máximo soportado
     double usado;       // espacio ocupado
     double pesoActual;  // peso actual
-    List<Objeto> inventario = new ArrayList<>();
     double estado = 100; // estado de funcionamiento 0-100
-    boolean estadoCritico= false;
+    boolean estadoCritico = false;
+    List<Objeto> inventario = new ArrayList<>();
 
-    // Método para agregar objeto
-    public boolean agregarObjeto(Objeto obj){
-        if(usado + obj.espacio <= capacidad && pesoActual + obj.peso <= pesoMaximo){
-            inventario.add(obj);
-            usado += obj.espacio;
-            pesoActual += obj.peso;
-            return true;
-        } else {
-            return false;
-        }
-    }
+
+    abstract void mostrarEstado();
 }
