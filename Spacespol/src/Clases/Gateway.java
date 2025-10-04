@@ -4,6 +4,7 @@
  */
 package Clases;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,8 +19,18 @@ public class Gateway {
     double energiaDisponible;
 
     public Gateway(Canadarm3 brazo) {
+        this.modulos = new ArrayList<>();
+        this.tripulacion = new ArrayList<>();
         this.brazo = brazo;
         this.energiaDisponible = 0;
+    }
+
+    public void agregarModulo(Modulo m) {
+        modulos.add(m);
+    }
+
+    public void agregarAstronauta(Astronauta a) {
+        tripulacion.add(a);
     }
 
     public Modulo getModulo(String nombre) {
@@ -40,6 +51,25 @@ public class Gateway {
         }
     }
 
+    public void consumirEnergia(double cantidad) {
+        if (energiaDisponible >= cantidad) {
+            energiaDisponible -= cantidad;
+        } else {
+            System.out.println("⚠ Energía insuficiente en el Gateway.");
+        }
+    }
+
+    // Distribuye energía a módulos que la consumen (HALO, Laboratorio, etc.)
+    public void distribuirEnergia() {
+        for (Modulo m : modulos) {
+            if (!(m instanceof PPE)) {
+                double energiaConsumida = energiaDisponible * 0.15;
+                energiaDisponible -= energiaConsumida;
+                System.out.println("🔋 Módulo " + m.nombre + " consumió " + energiaConsumida + " unidades de energía.");
+            }
+        }
+    }
+
     // Mostrar estado general del Gateway
     public void mostrarEstadoGeneral() {
         System.out.println("=== Estado del Gateway ===");
@@ -51,4 +81,5 @@ public class Gateway {
         }
         System.out.println("=========================");
     }
+
 }

@@ -53,7 +53,7 @@ public class Logistica extends Modulo {
     public void agregarPedido(Objeto obj) {
         if (!enViaje) {
             pedidosPendientes.add(obj);
-            System.out.println("📦 Pedido agregado: " + obj.nombre);
+            System.out.println("📦 Pedido agregado: " + obj.getNombre());
         } else {
             System.out.println("⚠ No se pueden agregar pedidos mientras el módulo logístico está en viaje.");
         }
@@ -98,5 +98,20 @@ public class Logistica extends Modulo {
 
     public boolean isEnViaje() {
         return enViaje;
+    }
+
+    // Consumir recurso específico (usado por el laboratorio)
+    public boolean consumirRecurso(String nombreRecurso) {
+        for (Objeto obj : inventario) {
+            if (obj.getNombre().equalsIgnoreCase(nombreRecurso)) {
+                inventario.remove(obj);
+                usado -= obj.getEspacio();
+                pesoActual -= obj.getPeso();
+                System.out.println("🔬 Recurso consumido del módulo logístico: " + nombreRecurso);
+                return true;
+            }
+        }
+        System.out.println("⚠ Recurso no encontrado: " + nombreRecurso);
+        return false;
     }
 }

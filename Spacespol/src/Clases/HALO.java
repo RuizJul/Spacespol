@@ -26,10 +26,10 @@ public class HALO extends Modulo {
 
     // Método para agregar objeto
     public boolean agregarObjeto(Objeto obj) {
-        if (usado + obj.espacio <= capacidad && pesoActual + obj.peso <= pesoMaximo) {
+        if (usado + obj.getEspacio() <= capacidad && pesoActual + obj.getPeso() <= pesoMaximo) {
             inventario.add(obj);
-            usado += obj.espacio;
-            pesoActual += obj.peso;
+            usado += obj.getEspacio();
+            pesoActual += obj.getPeso();
             return true;
         } else {
             return false;
@@ -39,9 +39,9 @@ public class HALO extends Modulo {
     // Método para remover objeto del módulo
     public boolean removerObjeto(Objeto obj) {
         for (int i = 0; i < inventario.size(); i++) {
-            if (inventario.get(i).nombre.equals(obj.nombre)) {
-                usado -= inventario.get(i).espacio;
-                pesoActual -= inventario.get(i).peso;
+            if (inventario.get(i).getNombre().equals(obj.getNombre())) {
+                usado -= inventario.get(i).getEspacio();
+                pesoActual -= inventario.get(i).getPeso();
                 inventario.remove(i);
                 if (usado < 0) {
                     usado = 0;
@@ -52,7 +52,7 @@ public class HALO extends Modulo {
                 return true;
             }
         }
-        System.out.println("El objeto " + obj.nombre + " no se encuentra en el HALO.");
+        System.out.println("El objeto " + obj.getNombre() + " no se encuentra en el HALO.");
         return false;
     }
 
