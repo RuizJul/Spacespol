@@ -53,7 +53,7 @@ public class Logistica extends Modulo {
     public void agregarPedido(Objeto obj) {
         if (!enViaje) {
             pedidosPendientes.add(obj);
-            System.out.println("📦 Pedido agregado: " + obj.nombre);
+            System.out.println("📦 Pedido agregado: " + obj.getNombre());
         } else {
             System.out.println("⚠ No se pueden agregar pedidos mientras el módulo logístico está en viaje.");
         }
