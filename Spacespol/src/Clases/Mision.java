@@ -105,6 +105,13 @@ public class Mision {
         this.objetivoCientifico = objetivoCientifico;
     }
     
+    public String getDestino(){
+        return this.destino;
+    }
+    
+    public double getProgresoMision(){
+        return this.progresoMision;
+    }
     
 }
 
