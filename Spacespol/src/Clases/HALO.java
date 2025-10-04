@@ -56,8 +56,11 @@ public class HALO extends Modulo {
         return false;
     }
 
-    public void asignarActividad(String actividad) {
+    public void asignarActividad(String actividad, Gateway gateway) {
         System.out.println("Astronautas realizan: " + actividad);
+        for (Astronauta a : tripulacion) {
+            a.hacerExperimento(gateway); 
+        }
     }
 
     // Mostrar estado específico de HALO

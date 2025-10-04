@@ -7,7 +7,7 @@ public class Astronauta {
     private int salud = 100;         
     private int vitalidad = 100;     
     private int privacidad = 100;    
-    private int moral = 100; 
+    private int  moral = 100; 
     private Modulo moduloActual;
     
     public Astronauta(String nombre) {
@@ -36,19 +36,27 @@ public class Astronauta {
     }
 
 
-    public void hacerExperimento(Modulo modulo) {
-        avanzarMisionPrincipal(5);
-        reducirVitalidad(10); 
+    public void hacerExperimento(Gateway gateway) {
+        reducirVitalidad(10);
         aumentarMoral(2);
-        System.out.println(nombre + " ha realizado un experimento.");
+        System.out.println(nombre + " realiza un experimento.");
+        if (gateway.getMision() != null) {
+            gateway.getMision().avanzarProgreso(5); // cada experimento contribuye
+        }
     }
 
-    public void recolectarMuestras(Planeta planeta, Objeto muestra) {
-        planeta.recolectarMuestraPlaneta(this, muestra);
-        reducirVitalidad(15); // gasto de energía al recolectar
-        aumentarMoral(3);
-        System.out.println(nombre + " recolectó muestra: " + muestra.getNombre());
+
+    public void recolectarMuestras(Gateway gateway, Planeta planeta, Objeto muestra) {
+        if(planeta.recolectarMuestraPlaneta(this, muestra)) {
+            reducirVitalidad(15);
+            aumentarMoral(3);
+            System.out.println(nombre + " recolectó: " + muestra.getNombre());
+            if (gateway.getMision() != null) {
+                gateway.getMision().avanzarProgreso(5); // recolecta contribuye al progreso
+            }
+        }
     }
+
     
     public void aumentarVitalidad(int cantidad) {
         this.vitalidad = Math.min(100, this.vitalidad + cantidad);

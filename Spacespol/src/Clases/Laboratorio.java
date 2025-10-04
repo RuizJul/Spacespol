@@ -100,14 +100,15 @@ public class Laboratorio extends Modulo {
         boolean exito = random.nextDouble() < 0.7; // 70% de probabilidad de éxito
 
         //CORRECION PARA MISION
-        if (exito) {
-            double avance = 10 + random.nextDouble() * 10; // avanza entre 10% y 20%
-            //progresoInvestigacion = Math.min(100, progresoInvestigacion + avance);
-            System.out.println("✅ Experimento exitoso. Progreso de investigación: " + progresoInvestigacion + "%");
-        } else {
-            estado -= 5;
+         if (exito) {
+            double avance = 10 + random.nextDouble() * 10; // 10-20%
+            if (gateway.getMision() != null) {
+                gateway.getMision().avanzarProgreso(avance);
+            }
+            System.out.println("✅ Experimento exitoso. Progreso de la misión actualizado.");
+         } else {
+             estado -= 5;
             System.out.println("❌ El experimento falló. El equipo se deteriora. Estado actual: " + estado + "%");
-
             if (estado <= 50) {
                 equipoOperativo = false;
                 estadoCritico = true;

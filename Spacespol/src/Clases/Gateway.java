@@ -17,6 +17,8 @@ public class Gateway {
     List<Astronauta> tripulacion;
     Canadarm3 brazo;
     double energiaDisponible;
+    private Mision mision;
+
 
     public Gateway(Canadarm3 brazo) {
         this.modulos = new ArrayList<>();
@@ -82,4 +84,12 @@ public class Gateway {
         System.out.println("=========================");
     }
 
+    public void setMision(Mision mision) {
+        this.mision = mision;
+    }
+
+    public Mision getMision() {
+        return mision;
+    }
+    
 }
