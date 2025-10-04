@@ -44,7 +44,7 @@ public class Astronauta {
     }
 
     public void recolectarMuestras(Planeta planeta, Objeto muestra) {
-        planeta.recolectarMuestra(this, muestra);
+        planeta.recolectarMuestraPlaneta(this, muestra);
         reducirVitalidad(15); // gasto de energía al recolectar
         aumentarMoral(3);
         System.out.println(nombre + " recolectó muestra: " + muestra.getNombre());
