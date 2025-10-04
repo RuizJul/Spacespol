@@ -13,5 +13,60 @@ public class Pedido {
     int tiempoIda;   // Días a la Tierra
     int tiempoVuelta; // Días de regreso
     boolean completado;
+
+    public Pedido(Objeto objeto, int tiempoIda, int tiempoVuelta, boolean completado) {
+        this.objeto = objeto;
+        this.tiempoIda = tiempoIda;
+        this.tiempoVuelta = tiempoVuelta;
+        this.completado = completado;
+    }
+
+    public Objeto getObjeto() {
+        return objeto;
+    }
+
+    public void setObjeto(Objeto objeto) {
+        this.objeto = objeto;
+    }
+
+    public int getTiempoIda() {
+        return tiempoIda;
+    }
+
+    public void setTiempoIda(int tiempoIda) {
+        this.tiempoIda = tiempoIda;
+    }
+
+    public int getTiempoVuelta() {
+        return tiempoVuelta;
+    }
+
+    public void setTiempoVuelta(int tiempoVuelta) {
+        this.tiempoVuelta = tiempoVuelta;
+    }
+
+    public boolean isCompletado() {
+        return completado;
+    }
+
+    public void setCompletado(boolean completado) {
+        this.completado = completado;
+    }
+    
+    
+    
+    public void actualizarEstado(int diaActual) {
+        if (diaActual >= diaPedido + getDuracionTotal()) {
+            completado = true;
+        }
+    }
+    
+    @Override
+    public String toString() {
+        return "Pedido de " + objeto.getNombre() +
+               " (Tipo: " + objeto.getTipo() + ")" +
+               " | Duración total: " + getDuracionTotal() + " días" +
+               " | Estado: " + (completado ? "Completado ✅" : "En curso 🚀");
+    }
 }
 

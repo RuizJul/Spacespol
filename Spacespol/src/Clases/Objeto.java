@@ -11,14 +11,14 @@ package Clases;
 public class Objeto {
     private String nombre;
     private double peso;
-    private double volumen;
+    private double espacio;
     private String tipo; // comida, mobiliario, equipo, experimento
     private boolean esFijo;
 
     public Objeto(String nombre, double peso, double volumen, String tipo, boolean esFijo) {
         this.nombre = nombre;
         this.peso = peso;
-        this.volumen = volumen;
+        this.espacio = volumen;
         this.tipo = tipo;
         this.esFijo = esFijo;
     }
@@ -39,12 +39,12 @@ public class Objeto {
         this.peso = peso;
     }
 
-    public double getVolumen() {
-        return volumen;
+    public double getEspacio() {
+        return espacio;
     }
 
-    public void setVolumen(double volumen) {
-        this.volumen = volumen;
+    public void setEspacio(double volumen) {
+        this.espacio = volumen;
     }
 
     public String getTipo() {
@@ -73,8 +73,9 @@ public class Objeto {
         System.out.println("Objeto: " + nombre);
         System.out.println("Tipo: " + tipo);
         System.out.println("Peso: " + peso + " kg");
-        System.out.println("Volumen: " + volumen + " m³");
+        System.out.println("Volumen: " + espacio + " m³");
         System.out.println("Es fijo: " + (esFijo ? "Sí" : "No"));
     }
+    
 }  
     
