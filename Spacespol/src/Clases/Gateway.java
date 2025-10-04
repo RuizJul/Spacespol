@@ -4,15 +4,14 @@
  */
 package Clases;
 
+import java.util.List;
+
 /**
  *
  * @author Julian
  */
 public class Gateway {
-    HALO halo;
-    Modulo logistica;
-    Modulo ppe;
-    Modulo cientifico;
+    List<Modulo> modulos;
     Canadarm3 brazo;
 
     void enviarPedido(Pedido pedido); // Maneja pedidos de logística

@@ -16,6 +16,9 @@ abstract class Modulo {
     double peso;      // Peso de objetos
     double energia;   // Energía disponible
     List<Objeto> inventario;
+    
+    double estado; //100% todo funciona correcto
+    boolean estadoCritico; //Es indispensable hacer reparaciones
 
     abstract void actualizarEstado(); // Efectos diarios
 }
