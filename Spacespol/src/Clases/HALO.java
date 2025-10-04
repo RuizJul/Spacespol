@@ -16,8 +16,5 @@ public class HALO extends Modulo {
     void asignarRecreacion();
     void modificarMobiliario(Objeto obj);
 
-    @Override
-    void actualizarEstado() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+   
 }

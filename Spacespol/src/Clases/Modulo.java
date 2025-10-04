@@ -4,6 +4,7 @@
  */
 package Clases;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,13 +13,23 @@ import java.util.List;
  */
 abstract class Modulo {
     String nombre;
-    double capacidad; // Espacio disponible
-    double peso;      // Peso de objetos
-    double energia;   // Energía disponible
-    List<Objeto> inventario;
-    
-    double estado; //100% todo funciona correcto
-    boolean estadoCritico; //Es indispensable hacer reparaciones
+    double capacidad;   // volumen máximo
+    double pesoMaximo;  // peso máximo soportado
+    double usado;       // espacio ocupado
+    double pesoActual;  // peso actual
+    List<Objeto> inventario = new ArrayList<>();
+    double estado = 100; // estado de funcionamiento 0-100
+    boolean estadoCritico= false;
 
-    abstract void actualizarEstado(); // Efectos diarios
+    // Método para agregar objeto
+    public boolean agregarObjeto(Objeto obj){
+        if(usado + obj.espacio <= capacidad && pesoActual + obj.peso <= pesoMaximo){
+            inventario.add(obj);
+            usado += obj.espacio;
+            pesoActual += obj.peso;
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

@@ -12,9 +12,6 @@ public class PPE extends Modulo {
     void generarEnergia();
     void fallar(); // Evento aleatorio
 
-    @Override
-    void actualizarEstado() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+   
     
 }

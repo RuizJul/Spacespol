@@ -12,8 +12,6 @@ import java.util.List;
  */
 public class Gateway {
     List<Modulo> modulos;
+    List<Astronauta> tripulacion;
     Canadarm3 brazo;
-
-    void enviarPedido(Pedido pedido); // Maneja pedidos de logística
-    void repararModulo(Modulo modulo); // Usa Canadarm3
 }
