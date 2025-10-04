@@ -1,22 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Clases;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-/**
- *
- * @author Julian
- */
 public class Laboratorio extends Modulo {
 
     private boolean equipoOperativo = true;
     private double energiaRequeridaPorExperimento = 10;
-    //MISION
     private int muestrasRecolectadas = 0; // materiales disponibles para analizar
     private Random random = new Random();
 
@@ -26,6 +17,9 @@ public class Laboratorio extends Modulo {
         this.pesoMaximo = pesoMaximo;
         this.usado = 0;
         this.pesoActual = 0;
+        this.estado = 100;
+        this.estadoCritico = false;
+        this.inventario = new ArrayList<>();
     }
 
     // Método para agregar objeto
@@ -40,19 +34,15 @@ public class Laboratorio extends Modulo {
         }
     }
 
-    // Método para remover objeto del módulo
+    // Método para remover objeto
     public boolean removerObjeto(Objeto obj) {
         for (int i = 0; i < inventario.size(); i++) {
             if (inventario.get(i).getNombre().equals(obj.getNombre())) {
                 usado -= inventario.get(i).getEspacio();
                 pesoActual -= inventario.get(i).getPeso();
                 inventario.remove(i);
-                if (usado < 0) {
-                    usado = 0;
-                }
-                if (pesoActual < 0) {
-                    pesoActual = 0;
-                }
+                if (usado < 0) usado = 0;
+                if (pesoActual < 0) pesoActual = 0;
                 return true;
             }
         }
@@ -83,7 +73,7 @@ public class Laboratorio extends Modulo {
             return;
         }
 
-        if (gateway.energiaDisponible < energiaRequeridaPorExperimento) {
+        if (gateway.getEnergiaDisponible() < energiaRequeridaPorExperimento) {
             System.out.println("⚠ Energía insuficiente para realizar el experimento.");
             return;
         }
@@ -93,21 +83,20 @@ public class Laboratorio extends Modulo {
             return;
         }
 
-        // Si pasa todas las condiciones:
+        // Consumir energía y disminuir muestras
         gateway.consumirEnergia(energiaRequeridaPorExperimento);
         muestrasRecolectadas--;
-        
+
         boolean exito = random.nextDouble() < 0.7; // 70% de probabilidad de éxito
 
-        //CORRECION PARA MISION
-         if (exito) {
+        if (exito) {
             double avance = 10 + random.nextDouble() * 10; // 10-20%
             if (gateway.getMision() != null) {
                 gateway.getMision().avanzarProgreso(avance);
             }
             System.out.println("✅ Experimento exitoso. Progreso de la misión actualizado.");
-         } else {
-             estado -= 5;
+        } else {
+            estado -= 5;
             System.out.println("❌ El experimento falló. El equipo se deteriora. Estado actual: " + estado + "%");
             if (estado <= 50) {
                 equipoOperativo = false;
@@ -115,5 +104,18 @@ public class Laboratorio extends Modulo {
                 System.out.println("⚠ El laboratorio ha entrado en estado crítico. Requiere reparación con el Canadarm3.");
             }
         }
+    }
+
+    // Métodos adicionales para manejar muestras
+    public void recolectarMuestra() {
+        muestrasRecolectadas++;
+    }
+
+    public int getMuestrasRecolectadas() {
+        return muestrasRecolectadas;
+    }
+
+    public boolean isEquipoOperativo() {
+        return equipoOperativo;
     }
 }

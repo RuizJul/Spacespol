@@ -91,5 +91,39 @@ public class Gateway {
     public Mision getMision() {
         return mision;
     }
+
+    public List<Modulo> getModulos() {
+        return modulos;
+    }
+
+    public void setModulos(List<Modulo> modulos) {
+        this.modulos = modulos;
+    }
+
+    public List<Astronauta> getTripulacion() {
+        return tripulacion;
+    }
+
+    public void setTripulacion(List<Astronauta> tripulacion) {
+        this.tripulacion = tripulacion;
+    }
+
+    public Canadarm3 getBrazo() {
+        return brazo;
+    }
+
+    public void setBrazo(Canadarm3 brazo) {
+        this.brazo = brazo;
+    }
+
+    public double getEnergiaDisponible() {
+        return energiaDisponible;
+    }
+
+    public void setEnergiaDisponible(double energiaDisponible) {
+        this.energiaDisponible = energiaDisponible;
+    }
+    
+    
     
 }

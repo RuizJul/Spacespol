@@ -1,27 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Clases;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author Julian
- */
 public class HALO extends Modulo {
 
     public HALO(double capacidad, double pesoMaximo) {
-        super.nombre = "HALO";
-        super.capacidad = capacidad;
-        super.pesoMaximo = pesoMaximo;
-        super.usado = 0;
-        super.pesoActual = 0;
-        super.estado = 100;
-        super.estadoCritico = false;
-        super.inventario = new ArrayList<>();
+        this.nombre = "HALO";
+        this.capacidad = capacidad;
+        this.pesoMaximo = pesoMaximo;
+        this.usado = 0;
+        this.pesoActual = 0;
+        this.estado = 100;
+        this.estadoCritico = false;
+        this.inventario = new ArrayList<>();
     }
 
     // Método para agregar objeto
@@ -36,19 +28,15 @@ public class HALO extends Modulo {
         }
     }
 
-    // Método para remover objeto del módulo
+    // Método para remover objeto
     public boolean removerObjeto(Objeto obj) {
         for (int i = 0; i < inventario.size(); i++) {
             if (inventario.get(i).getNombre().equals(obj.getNombre())) {
                 usado -= inventario.get(i).getEspacio();
                 pesoActual -= inventario.get(i).getPeso();
                 inventario.remove(i);
-                if (usado < 0) {
-                    usado = 0;
-                }
-                if (pesoActual < 0) {
-                    pesoActual = 0;
-                }
+                if (usado < 0) usado = 0;
+                if (pesoActual < 0) pesoActual = 0;
                 return true;
             }
         }
@@ -56,14 +44,18 @@ public class HALO extends Modulo {
         return false;
     }
 
+    // Asignar actividad a la tripulación desde el Gateway
     public void asignarActividad(String actividad, Gateway gateway) {
         System.out.println("Astronautas realizan: " + actividad);
-        for (Astronauta a : tripulacion) {
-            a.hacerExperimento(gateway); 
+
+        // Verificar que la tripulación y la misión existan
+        if (gateway != null && gateway.getTripulacion() != null && !gateway.getTripulacion().isEmpty()) {
+            for (Astronauta a : gateway.getTripulacion()) {
+                a.hacerExperimento(gateway); // cada astronauta realiza la actividad
+            }
         }
     }
 
-    // Mostrar estado específico de HALO
     @Override
     public void mostrarEstado() {
         System.out.println("=== Módulo HALO ===");
