@@ -4,18 +4,19 @@
  */
 package Clases;
 
-import java.util.List;
-
 /**
  *
  * @author Julian
  */
-abstract class Modulo {
+public class Astronauta {
     String nombre;
-    double capacidad; // Espacio disponible
-    double peso;      // Peso de objetos
-    double energia;   // Energía disponible
-    List<Objeto> inventario;
+    double hambre;
+    double salud;
+    double moral;
+    double energia;
 
-    abstract void actualizarEstado(); // Efectos diarios
+    void comer();
+    void descansar();
+    void hacerExperimento(Cientifico modulo);
+    void recolectarMuestras(Planeta planeta);
 }

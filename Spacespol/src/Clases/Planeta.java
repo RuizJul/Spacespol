@@ -10,12 +10,11 @@ import java.util.List;
  *
  * @author Julian
  */
-abstract class Modulo {
+public class Planeta {
     String nombre;
-    double capacidad; // Espacio disponible
-    double peso;      // Peso de objetos
-    double energia;   // Energía disponible
-    List<Objeto> inventario;
+    double distancia; // Para calcular tiempo de viaje
+    List<Objeto> muestras;
 
-    abstract void actualizarEstado(); // Efectos diarios
+    void recolectarMuestra(Astronauta astronauta, Objeto muestra);
+
 }

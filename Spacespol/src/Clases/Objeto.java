@@ -4,18 +4,13 @@
  */
 package Clases;
 
-import java.util.List;
-
 /**
  *
  * @author Julian
  */
-abstract class Modulo {
+public class Objeto {
     String nombre;
-    double capacidad; // Espacio disponible
-    double peso;      // Peso de objetos
-    double energia;   // Energía disponible
-    List<Objeto> inventario;
-
-    abstract void actualizarEstado(); // Efectos diarios
+    double peso;
+    double espacio;
+    String tipo; // comida, mobiliario, equipo, experimento
 }
