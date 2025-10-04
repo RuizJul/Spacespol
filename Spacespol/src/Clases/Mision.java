@@ -1,13 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Clases;
 
-/**
- *
- * @author Julian
- */
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class Mision {
     private String destino;          
     private int duracionDiasTotal;   
@@ -15,6 +12,10 @@ public class Mision {
     private double progresoMision;   
     private double factorDificultad; 
     private String objetivoCientifico;
+    
+    private List<Astronauta> tripulacion = new ArrayList<>();
+    private List<String> objetivosSecundarios = new ArrayList<>();
+    private List<String> logDiario = new ArrayList<>();
 
     
     public Mision(String destino, int duracionDias, double factorDificultad, String objetivoCientifico) {
@@ -31,28 +32,80 @@ public class Mision {
     public void avanzarDia() {
         if (diasRestantes > 0) {
             diasRestantes--;
+            logDiario.add("Día avanzado. Días restantes: " + diasRestantes);
+            eventoDiario();
         }
     }
 
     
-    /** Aumenta el progreso de la misión principal.
-     * @param cantidad */
     public void avanzarProgreso(double cantidad) {
-        this.progresoMision = Math.min(100.0, this.progresoMision + cantidad);
+        double progresoReal = cantidad * factorDificultad;
+        progresoMision = Math.min(100.0, progresoMision + progresoReal);
+        logDiario.add("Progreso avanzado: " + progresoReal + "%. Total: " + progresoMision + "%");
     }
     
+    //Tripulacion
+     public void asignarTripulacion(List<Astronauta> tripulacion) {
+        this.tripulacion = tripulacion;
+    }
+
+    public List<Astronauta> getTripulacion() {
+        return tripulacion;
+    }
+    
+    //Objeto 
+    public void agregarObjetivoSecundario(String objetivo) {
+        objetivosSecundarios.add(objetivo);
+    }
+
+    public List<String> getObjetivosSecundarios() {
+        return objetivosSecundarios;
+    }
+    
+    
+    // Log diario
+     public void agregarLog(String mensaje) {
+        logDiario.add(mensaje);
+    }
+
+    public List<String> getLogDiario() {
+        return logDiario;
+    }
+    
+    //Eventos que pueden ocurrir aleatoriamente
+     public void eventoDiario() {
+        double probabilidad = Math.random();
+        if (probabilidad < 0.1) { // 10% de probabilidad de evento
+            String evento = "⚠️ Evento inesperado: fallo en módulo PPE.";
+            logDiario.add(evento);
+            System.out.println(evento);
+            // Opcional: reducir progreso, vitalidad o moral
+            for (Astronauta a : tripulacion) {
+                a.reducirVitalidad(5);
+                a.reducirMoral(2);
+            }
+        }
+    }
+     
     /** Verifica si se cumple la condición de éxito al finalizar el tiempo. */
-    public boolean verificarExito() {
-        // La victoria se logra si el tiempo se agota (supervivencia) Y se logra un avance considerable (ej: 80% o más)
-        return (diasRestantes == 0 && progresoMision >= 80.0);
+     public boolean verificarExito() {
+        return diasRestantes == 0 && progresoMision >= 80.0;
+    }
+
+    public boolean verificarFracaso() {
+        return diasRestantes == 0 && progresoMision < 80.0;
+    }
+
+    public Mision(String destino, int duracionDiasTotal, int diasRestantes, double progresoMision, double factorDificultad, String objetivoCientifico) {
+        this.destino = destino;
+        this.duracionDiasTotal = duracionDiasTotal;
+        this.diasRestantes = diasRestantes;
+        this.progresoMision = progresoMision;
+        this.factorDificultad = factorDificultad;
+        this.objetivoCientifico = objetivoCientifico;
     }
     
     
-    public String getDestino() { return destino; }
-    public int getDiasRestantes() { return diasRestantes; }
-    public double getProgresoMision() { return progresoMision; }
-    public double getFactorDificultad() { return factorDificultad; }
-    public String getObjetivoCientifico() { return objetivoCientifico; }
 }
 
 
