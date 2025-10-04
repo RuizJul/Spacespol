@@ -13,12 +13,14 @@ public class Pedido {
     int tiempoIda;   // Días a la Tierra
     int tiempoVuelta; // Días de regreso
     boolean completado;
+     private int diaPedido;
 
-    public Pedido(Objeto objeto, int tiempoIda, int tiempoVuelta, boolean completado) {
+    public Pedido(Objeto objeto, int tiempoIda, int tiempoVuelta, boolean completado, int diaPedido) {
         this.objeto = objeto;
         this.tiempoIda = tiempoIda;
         this.tiempoVuelta = tiempoVuelta;
         this.completado = completado;
+        this.diaPedido = diaPedido;
     }
 
     public Objeto getObjeto() {
@@ -52,15 +54,27 @@ public class Pedido {
     public void setCompletado(boolean completado) {
         this.completado = completado;
     }
+
+    public int getDiaPedido() {
+        return diaPedido;
+    }
+
+    public void setDiaPedido(int diaPedido) {
+        this.diaPedido = diaPedido;
+    }
     
     
-    
+    public int getDuracionTotal() {
+        return tiempoIda + tiempoVuelta;
+    }
+
+    // Verifica si el pedido ya debería haber llegado según el día actual
     public void actualizarEstado(int diaActual) {
         if (diaActual >= diaPedido + getDuracionTotal()) {
             completado = true;
         }
     }
-    
+
     @Override
     public String toString() {
         return "Pedido de " + objeto.getNombre() +
