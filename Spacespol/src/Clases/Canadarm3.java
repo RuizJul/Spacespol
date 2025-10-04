@@ -52,24 +52,24 @@ public class Canadarm3 {
         }
 
         if(!origen.inventario.contains(obj)){
-            System.out.println("El módulo " + origen.nombre + " no contiene " + obj.nombre);
+            System.out.println("El módulo " + origen.nombre + " no contiene " + obj.getNombre());
             return;
         }
 
-        if(destino.usado + obj.espacio > destino.capacidad || destino.pesoActual + obj.peso > destino.pesoMaximo){
-            System.out.println("No hay suficiente espacio o peso en " + destino.nombre + " para " + obj.nombre);
+        if(destino.usado + obj.getEspacio() > destino.capacidad || destino.pesoActual + obj.getPeso() > destino.pesoMaximo){
+            System.out.println("No hay suficiente espacio o peso en " + destino.nombre + " para " + obj.getNombre());
             return;
         }
 
         origen.inventario.remove(obj);
-        origen.usado -= obj.espacio;
-        origen.pesoActual -= obj.peso;
+        origen.usado -= obj.getEspacio();
+        origen.pesoActual -= obj.getPeso();
 
         destino.inventario.add(obj);
-        destino.usado += obj.espacio;
-        destino.pesoActual += obj.peso;
+        destino.usado += obj.getEspacio();
+        destino.pesoActual += obj.getPeso();
 
-        System.out.println(obj.nombre + " movido de " + origen.nombre + " a " + destino.nombre);
+        System.out.println(obj.getNombre() + " movido de " + origen.nombre + " a " + destino.nombre);
 
     }
 }
