@@ -15,6 +15,8 @@ public class Planeta {
     double distancia; // Para calcular tiempo de viaje
     List<Objeto> muestras;
 
-    void recolectarMuestra(Astronauta astronauta, Objeto muestra);
+    void recolectarMuestra(Astronauta astronauta, Objeto muestra){
+        
+    }
 
 }
