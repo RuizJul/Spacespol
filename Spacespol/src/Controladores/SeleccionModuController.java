@@ -58,7 +58,7 @@ public class SeleccionModuController implements Initializable {
     public void retroceder(){
         try {
         Parent root = FXMLLoader.load(getClass().getResource("/Vistas/eleccionDificultad.fxml"));
-        Stage stage = (Stage) retrocederBoton.getScene().getWindow(); // obtener ventana actual
+        Stage stage = (Stage) retrocederBoton.getScene().getWindow(); // obtener ventana actual 
         stage.setScene(new Scene(root));
         stage.show();
     } catch (IOException ex) {

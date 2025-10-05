@@ -16,7 +16,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
+ * FXML Controller class  
  *
  * @author romin
  */

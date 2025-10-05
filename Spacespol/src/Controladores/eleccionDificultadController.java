@@ -40,7 +40,7 @@ public class eleccionDificultadController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vistas/SeleccionModu.fxml"));
             Parent root = loader.load();
 
-            // Obtener la ventana actual 
+            // Obtener la ventana actual   
             Stage stage = (Stage) botonFacil.getScene().getWindow();
 
             // Cambiar la escena
