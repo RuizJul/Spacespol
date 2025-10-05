@@ -4,6 +4,7 @@
  */
 package Controladores;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -25,7 +26,8 @@ import javafx.stage.Stage;
  */
 public class SeleccionModuController implements Initializable {
 
-    
+    @FXML
+    private Button retrocederBoton;
     
     @FXML
     private Button logisBoton;
@@ -50,6 +52,19 @@ public class SeleccionModuController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    
+    @FXML
+    public void retroceder(){
+        try {
+        Parent root = FXMLLoader.load(getClass().getResource("/Vistas/eleccionDificultad.fxml"));
+        Stage stage = (Stage) retrocederBoton.getScene().getWindow(); // obtener ventana actual
+        stage.setScene(new Scene(root));
+        stage.show();
+    } catch (IOException ex) {
+        ex.printStackTrace();
+    }
+        
     }
     }
     

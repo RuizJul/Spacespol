@@ -37,7 +37,7 @@ public class eleccionDificultadController {
         System.out.println("hola");
         try {
             // Cargar el FXML de la siguiente vista
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vistas/EstacionEspacial.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vistas/SeleccionModu.fxml"));
             Parent root = loader.load();
 
             // Obtener la ventana actual 

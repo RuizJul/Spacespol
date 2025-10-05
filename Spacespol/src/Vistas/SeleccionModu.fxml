@@ -5,7 +5,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladores.SeleccionModuController">
    <children>
       <ImageView fitHeight="408.0" fitWidth="608.0" pickOnBounds="true" preserveRatio="true">
@@ -14,5 +13,11 @@
          </image>
       </ImageView>
       <Button fx:id="logisBoton" layoutX="351.0" layoutY="225.0" mnemonicParsing="false" onAction="#iniciarVentanaEmergente" opacity="0.0" prefHeight="122.0" prefWidth="162.0" />
+      <ImageView fitHeight="79.0" fitWidth="122.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Resources/retroceder.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="retrocederBoton" layoutX="19.0" layoutY="30.0" mnemonicParsing="false" onAction="#retroceder" opacity="0.0" prefHeight="47.0" prefWidth="108.0" text="Button" />
    </children>
 </Pane>
