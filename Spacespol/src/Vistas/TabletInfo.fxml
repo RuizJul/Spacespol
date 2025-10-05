@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="380.0" prefWidth="606.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25" fx:controller="Vistas.TabletInfoController">
+   <children>
+      <ImageView fitHeight="426.0" fitWidth="624.0" layoutX="-3.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Resources/tabletopcion.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="activateBoton" layoutX="214.0" layoutY="285.0" mnemonicParsing="false" onAction="#activate" opacity="0.0" prefHeight="54.0" prefWidth="200.0" text="Button" />
+   </children>
+</AnchorPane>
