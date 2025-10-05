@@ -16,7 +16,7 @@ import javafx.fxml.Initializable;
 public class HALOController implements Initializable {
 
     /**
-     * Initializes the controller class.
+     * Initializes the cntroller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {

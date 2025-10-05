@@ -31,7 +31,7 @@ public class BienvenidaController {
     private void cargarVista(String rutaFXML) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource(rutaFXML));
-            Stage stage = (Stage) playButton.getScene().getWindow(); // Obtener ventana actual
+            Stage stage = (Stage) playButton.getScene().getWindow(); // Obtene ventana actual
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException ex) {
