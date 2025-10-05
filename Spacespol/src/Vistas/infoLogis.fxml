@@ -25,4 +25,5 @@
       </ImageView>
       <Button fx:id="retrocederBoton" layoutX="20.0" layoutY="38.0" mnemonicParsing="false" onAction="#retroceder" opacity="0.0" prefHeight="47.0" prefWidth="119.0" text="Button" />
    </children>
-</Pane>
+   
+</Pane> 
